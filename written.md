@@ -186,6 +186,7 @@ c = copy.deepcopy(a)
 （在此作答）
 a是b的浅拷贝对象，外层分隔，但内层共享，
 c在引进copy模块后，对a进行了深拷贝，内外层均分隔。
+
 执行上述指令后，a中零位即[1, 2],转换成[1, 2, 99],
 b由于浅拷贝a，故内层共享，即变为[[1, 2, 99], [3, 4]]，
 c由于深拷贝a，内外层均分隔，即不变，本身为 [[1, 2], [3, 4]]。
@@ -209,25 +210,45 @@ logs = [
 
 （在此作答）
 1. 
+
 error_logs = []
+
 for log in logs:
+
     if logs["level"] == "ERROR":
+    
        error_logs.append(log)
+       
 2. 
+
 user_counts = {}
+
 for log in logs:
+
     user_name = log["user"]
+    
     if user_name in user_counts:
+    
        user_counts[user_name] = user_counts[user_name] + 1
+       
     else:
+    
       user_counts[user_name]=1
+      
 print(user_counts)
+
 3. 
+
 len(logs)只能得到列表中字典的总数，而题目要求统计每个用户出现了几次，想统计每个用户出现了几次，需遍历logs列表中的每一个字典，提出user名字，添加进新的空字典进行计数。
+
 遍历结构：
+
 创造空字典user_counts
+
 遍历logs，从中提取用户名。
+
 在user_counts先写入每一个名字，初始化次数为一，然后再对重复名字增加次数。
+
 ### 第 3 题：异常处理设计
 
 Day_10 中你写过 `safe_int(s)` 函数：能转就返回整数，不能转就返回 `None`。
@@ -242,14 +263,23 @@ Day_10 中你写过 `safe_int(s)` 函数：能转就返回整数，不能转就�
 请写出函数代码，并说明：为什么这里用 `try/except` 比先用 `if` 判断再计算更好？
 
 （在此作答）
+
 def safe_divide(a, b):
+
     try:
+    
         number_a = float(a)
+        
         number_b = float(b)
+        
         return number_a/number_b
+        
     except ValueError:
+    
         return None
+        
     except ZeroDivisionError:
+    
         return None
 
 用if需分别检查a,b能否转化成数字，还要判断b是否等于0，代码驳杂，不易读且开销大，并且try/except能更安全地处理错误。
