@@ -208,12 +208,12 @@ logs = [
 3. 解释为什么第 2 问不能直接用 `len(logs)` 得到结果，需要什么遍历结构？
 
 （在此作答）
-1.
+1. 
 error_logs = []
 for log in logs:
     if logs["level"] == "ERROR":
        error_logs.append(log)
-2.
+2. 
 user_counts = {}
 for log in logs:
     user_name = log["user"]
@@ -222,7 +222,7 @@ for log in logs:
     else:
       user_counts[user_name]=1
 print(user_counts)
-3.
+3. 
 len(logs)只能得到列表中字典的总数，而题目要求统计每个用户出现了几次，想统计每个用户出现了几次，需遍历logs列表中的每一个字典，提出user名字，添加进新的空字典进行计数。
 遍历结构：
 创造空字典user_counts
@@ -251,4 +251,5 @@ def safe_divide(a, b):
         return None
     except ZeroDivisionError:
         return None
+
 用if需分别检查a,b能否转化成数字，还要判断b是否等于0，代码驳杂，不易读且开销大，并且try/except能更安全地处理错误。
